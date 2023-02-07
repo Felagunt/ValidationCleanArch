@@ -18,5 +18,23 @@ class MainViewModel(
 
     var state by mutableStateOf(RegistrationFormState())
 
+    fun onEvent(event: RegistrationFormEvent) {
+        when(event) {
+            is RegistrationFormEvent.EmailChanged -> {
+                state = state.copy(email = event.email)
+            }
+            is RegistrationFormEvent.PasswordChanged -> {
+                state = state.copy(password = event.password)
+            }
+            is RegistrationFormEvent.RepeatedPasswordChanged -> {
+                state = state.copy(repeatedPassword = event.repeatedPassword)
+            }
+            is RegistrationFormEvent.AcceptTerms -> {
+                state = state.copy(acceptedTerms = event.isAccepted)
+            }
+            is RegistrationFormEvent.Submit -> {
 
+            }
+        }
+    }
 }
